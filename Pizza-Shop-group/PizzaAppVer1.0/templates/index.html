@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+    <link href="static/css/style.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="Welcome">
+
+        <h1> Welcome to Mario's Pizza cash register</h1>
+
+        <p> Please input your cashier ID number.</p>
+
+        <form action="login" method="POST">
+            <label for="cId">Id:</label><br>
+            <input type="text" id="cId" name="cId">
+
+            <p><button class="enter" type="submit">Enter</button></p>
+
+        </form>
+
+    </div>
+
+
+    <p class="error"> {{ error }}</p>
+
+</body>
+
+<div class="devisionFooter">
+    <p class="footer">Made by 7-5 group.</p>
+</div>
+
+</html>

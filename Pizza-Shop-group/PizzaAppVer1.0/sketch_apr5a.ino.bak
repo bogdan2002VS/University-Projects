@@ -1,0 +1,32 @@
+#include "Arduino.h"
+
+const int LDR_Pin = 2;
+const int Buzzer_Pin = 3;
+
+long int currentTime = 0;
+long int lastDataRead = 0;
+const int dataReadThreshold = 1000;
+
+bool pizzaReadyStatus = false;
+
+int lightLevel = 300;
+
+void setup() {
+  pinMode(LDR_Pin, INPUT);
+  pinMode(Buzzer_Pin, OUTPUT);
+  Serial.begin(115200);
+  Serial.setTimeout(50);
+}
+
+void loop() {
+  currentTime = millis();
+  if (currentTime - lastDataRead >= dataReadThreshold){
+    lastDataRead = currentTime;
+    lightLevel = analogRead(LDR_Pin);
+    Serial.println(lightLevel);
+    if (lightLevel <= 450){
+      tone(Buzzer_Pin, 1000);
+      Serial.println("Finished");
+    }
+  }
+}

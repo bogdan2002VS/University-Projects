@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order selection</title>
+    <link href="static/css/style.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="logOutButton">
+        <h1>
+
+            <form method="POST" action="logout">
+                <input type="submit" value="Log Out" />
+            </form>
+        </h1>
+    </div>
+
+    <h2 class="orderGUI">
+        Customer order selection
+    </h2>
+
+    <div class="order">
+
+    
+        <form action="submitOrder" method="POST">
+            <label for="pizzaId">Select the pizza:</label>
+            <select name="pizzaId" id="pizzaId">
+                <option value="1">Margherita</option>
+                <option value="2">Salami</option>
+                <option value="3">Funghi</option>
+                <option value="4">Diavoli</option>
+                <option value="5">Vegeterian</option>
+            </select><br><br>
+            <button type="submit">Submit order</button>
+        </form>
+        
+
+    </div>
+
+    <p class="success"> {{ success }}</p>
+    
+    <div class="orderStatusRedirect">
+        <form method="GET" action="orderStatus">
+            <input class="orderStatusRedirect" type="submit" value="View orders" width="100px" height="100px"/>
+        </form>
+    </div>
+
+</body>
+<div class="devisionFooter">
+    <p class="footer">Made by 7-5 group.</p>
+</div>
+
+</html>

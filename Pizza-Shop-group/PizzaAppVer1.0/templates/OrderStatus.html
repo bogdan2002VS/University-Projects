@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta content ='2; url=http://127.0.0.1:5000/orderStatus' http-equiv='refresh'>
+    <title>Document</title>
+    <link href="static/css/style.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="goBackButton">
+        <button onclick="history.back()">Go back</button>
+    </div>
+
+    <div class="orderStaus">
+
+        
+        <h1>Order/s status</h1>
+
+    </div><br><br>
+
+    <table>
+
+        <th>
+            Orders
+        </th>
+
+        {% for line in lines %}<tr><td>{{ line }}</td></tr>{% endfor %} 
+
+    </table>
+      
+      
+</body>
+<div class="devisionFooter">
+    <p class="footer">Made by 7-5 group.</p>
+</div>
+
+</html>

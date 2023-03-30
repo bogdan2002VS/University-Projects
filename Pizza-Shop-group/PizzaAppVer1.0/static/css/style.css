@@ -1,0 +1,169 @@
+/* GENERAL CSS */
+.logOutButton {
+ text-align: right;
+}
+
+input[type="submit"]{ 
+    text-align: right;
+    display: inline-block;
+    padding: 30px 30px;
+    background-color:rgb(22, 121, 22);
+    color: black;
+    margin: auto;
+    font-weight: bold;
+}
+
+button{
+    display: inline-block;
+    padding: 30px 30px;
+    background-color: rgb(22, 121, 22);
+    color: black;
+    margin: auto;
+    font-weight: bold;
+    
+}
+
+html{
+    font-family: 'Times New Roman', Times, serif;
+}
+
+body{
+    background-image: url("img/pizza.jpg");
+    background-repeat:repeat;
+    background-size:33.5%;
+    height: 100%;
+
+}
+
+.footer{
+    position: fixed;
+    text-align: center;
+    bottom: 0;
+    border-style: solid;
+    background-color: white;
+    margin-left: 45%;
+    margin-right: 45%;
+}
+
+
+
+/* INDEX PAGE CSS */
+.Welcome{
+    margin-top: 20%;
+    text-align: center;
+    color: black;
+    background-color: white;
+    margin-left: 30%;
+    margin-right: 30%;
+    border-style: solid;
+    font-style: italic;
+}
+
+
+.error {
+    text-align: center;
+    background-color: white;
+    color:red;
+    margin-left: 40%;
+    margin-right: 40%;
+    font-size:x-large;
+    font-style: italic;
+    font-weight: bold;
+    
+}
+
+
+
+/* ORDER SELECTION PAGE CSS */
+.orderGUI{
+    text-align: center;
+    font-size: xx-large;
+    background-color: white;
+    margin-left: 35%;
+    margin-right: 35%;
+    border-style: solid;
+}
+
+.order{
+    text-align: center;
+    background-color: white;
+    margin-left: 40%;
+    margin-right: 40%;
+    font-size: xx-large;
+    border-style: solid;
+}
+
+.success {
+    text-align: center;
+    color: black;
+    background-color: white;
+    margin-left: 40%;
+    margin-right: 40%;
+    font-size: x-large;
+    font-style: italic;
+    font-weight: bold;
+    
+}
+
+.orderStatusRedirect{
+    text-align: center;
+    font-weight: bold;
+}
+
+
+/* ORDER STATUS PAGE CSS */
+.goBackButton{
+    text-align: right;
+    
+}
+
+.orderStaus{
+    text-align: center;
+    list-style-position: inside;
+    background-color: white;
+    margin-left: 40%;
+    margin-right: 40%;
+    border-style: solid;
+    
+
+}
+
+table{
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px;
+    border-color: black;
+    border-style: solid;
+}
+
+th{
+    border: 1px;
+    border-color: black;
+    border-style: solid; 
+}
+
+td{
+    border: 1px;
+    border-color: black;
+    border-style: solid;
+}
+
+
+/* LOG OUT PAGE CSS */
+.bye{
+    text-align: center;
+    background-color: white;
+    margin-left: 40%;
+    margin-right: 40%;
+    border-style: solid;
+}
+
+.logInButton{
+    text-align: center;
+    background-color: white;
+    margin-left: 40%;
+    margin-right: 40%;
+    border-style: solid;
+}
+
