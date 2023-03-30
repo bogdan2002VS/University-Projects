@@ -1,0 +1,35 @@
+﻿@page
+@model Proiect_din_ala_tank.Pages.UpdateModel
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="login-form card">
+    <head>
+        <link rel="stylesheet" href="~/css/css_logIn.css" asp-append-version="true" />
+     </head>
+     <h1>Update</h1>
+    <div asp-validation-summary="All" class="container text-danger">
+        <form method="post">
+             <div class="form-group ">
+               <input type="text" asp-for="@Model.Name" class="form-control" placeholder="Name" id="UserName" value="@Model.Name">
+               <i class="fa fa-user"></i> 
+             </div>
+             <div class="form-group ">
+               <input type="text" asp-for="@Model.Username" class="form-control" placeholder="Username" id="UserName" value ="@Model.Username">
+               <i class="fa fa-user"></i> 
+             </div>
+             <div class="form-group log-status">
+
+               <input type="password" asp-for="@Model.Password" class="form-control" placeholder="Password" id="Password" value="@Model.Password">
+               <i class="fa fa-lock"></i>
+                    
+             </div>
+            
+             
+              <a class="link" href="#">Lost your password?</a>
+             <button type="submit" class="log-btn">Update</button>
+        </form>
+    </div>
+
+</div>

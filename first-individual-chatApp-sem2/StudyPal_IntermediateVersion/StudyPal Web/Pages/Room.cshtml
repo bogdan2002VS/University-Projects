@@ -1,0 +1,69 @@
+﻿@page "{id:long}"
+@model Proiect_din_ala_tank.Pages.RoomModel
+@{
+    ViewData["Title"] = "Room";
+    Layout = null;
+
+}
+@Html.AntiForgeryToken()
+<partial name="_MessagesPartial" model="Model.messages"></partial>
+<body style="background-color: #eee;">
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" asp-append-version="true" />
+    <section style="background-color: #eee;">
+        <div class="container py-5">
+
+            <div class="row">
+
+                <ul  class="list-unstyled flex-fill">
+                    <li id="messages"> </li>
+                    <li class="bg-white mb-3 ">
+
+                        <div class="form-outline">
+                            <textarea class="form-control" id="message" rows="4" name="message"></textarea>
+                        </div>
+
+                    </li>
+
+                    <button id="sendMessage" type="submit" class="btn btn-info btn-rounded float-end  ">Send</button>
+            
+                </ul>
+
+            </div>
+            <script src="~/lib/jquery/dist/jquery.min.js"></script>
+            <script src="~/js/site.js" asp-append-version="true"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+            <script type="text/javascript">
+                //window.scroll(0, document.documentElement.scrollHeight)
+                //location.replace(location.href.split('#')[0]);
+                function getMessages() {
+
+                    window.scroll(0, document.documentElement.scrollHeight)
+
+                   // $("#messages").empty();
+                    $("#messages").load("/room/" + @Model.ID+"?handler=Messages");
+
+                }
+                setInterval(getMessages, 1000);
+                $(function () {
+                    $('#sendMessage').on('click', function () {
+                        const message = document.getElementById('message');
+
+                        $.ajax({
+                          type: "POST",
+                            beforeSend: function (xhr) {
+                                xhr.setRequestHeader("XSRF-TOKEN",
+                                    $('input:hidden[name="__RequestVerificationToken"]').val());
+                            },
+                          url: "/room/" + @Model.ID+"?handler=SendMessage",
+                            data: { message: message.value},
+                            success: function () {
+                                message.value = "";
+                            }
+                        })
+                    });
+                });
+            </script>
+    </section>
+</body>

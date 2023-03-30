@@ -1,0 +1,179 @@
+﻿@page
+@model Syntesys_Week_12_16.Pages.ProfileModel
+@{
+    ViewData["Title"] = "Profile";
+    //Layout = null;
+}
+<section class="tg-may-account-wrapp tg">
+
+    <div class="inner">
+        <div class="tg-account">
+
+            <!-- Account banner start -->
+            <div class="account-banner">
+                <div class="inner-banner">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8 detail">
+                                <div class="inner">
+                                    <h1 class="page-title">My Account</h1>
+                                    <h3 class="user-name">Hello @Model.UserModel.Name</h3>
+                                    <p class="description">Here you can see your orders and can change your account information.</p>
+                                </div>
+                            </div>
+                            <!-- Column end -->
+                            <div class="col-md-4 profile">
+                                <div class="profile">
+                                    <span class="image">
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- Column end -->
+                        </div>
+                        <!-- Row end -->
+                        <!-- Navbar Start -->
+                        <div class="nav-area">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="dashboard-link" data-toggle="tab" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="true"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="my-order" data-toggle="tab" href="#my-orders" role="tab" aria-controls="my-orders" aria-selected="false"><i class="fas fa-file-invoice"></i> <span>Orders</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="account-detail" data-toggle="tab" href="#account-details" role="tab" aria-controls="account-details" aria-selected="false"><i class="fas fa-user-alt"></i> <span>Account Details</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Navbar End -->
+                    </div>
+                </div>
+            </div>
+            <!-- Banner end   -->
+            <!-- Tabs Content start -->
+            <div class="tabs tg-tabs-content-wrapp">
+                <div class="inner">
+                    <div class="container">
+                        <div class="inner">
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="dashboard" role="tabpanel" aria-labelledby="dashboard-link">
+                                    <div class="my-account-dashboard">
+                                        <div class="inner">
+                                            <div class="row">
+                                                <div class="col-md-4 mb-3">
+                                                    <div class="card" area-toggle="my-order">
+                                                        <div class="card-body">
+                                                            <div class="text-center">
+                                                                <a><img src="https://res.cloudinary.com/templategalaxy/image/upload/v1631257421/codepen-my-account/images/orders_n2aopq.png"></a>
+                                                            </div>
+                                                            <h2>Your Orders</h2>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <div class="card" area-toggle="account-detail">
+                                                        <div class="card-body">
+                                                            <div class="text-center">
+                                                                <a><img src="https://res.cloudinary.com/templategalaxy/image/upload/v1631257421/codepen-my-account/images/login_aq9v9z.png"></a>
+                                                            </div>
+                                                            <h2>Account Details</h2>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="my-orders" role="tabpanel" aria-labelledby="my-order">
+                                    <table id="my-orders-table" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Order</th>
+                                                <th>Status</th>
+                                                <th>Total</th>
+                                                <th class="action">Order details</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var order in Model.OrderModelList)
+                                            {
+                                                <tr>
+                                                    <td>#@order.ID</td>
+                                                    <td>@order.OrderStatus</td>
+                                                    <td>$@order.Total</td>
+                                                    <td class="action"><a asp-page="Receipt" asp-route-orderid="@order.ID" class="view-order" button>View Order</a></td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade" id="account-details" role="tabpanel" aria-labelledby="account-detail">
+                                    <div class="account-detail-form">
+                                        <div class="inner">
+                                            <form class="tg-form" action="" method="post">
+                                                <h4> @ViewData["Profile_Error"]</h4>
+                                                <h4> @ViewData["Profile_Update"]</h4>
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="inputfname" class="text-left">Name</label>
+                                                        <input asp-for="UserModel.Name" type="text" class="form-control" id="inputfname" placeholder="Name">
+                                                    </div>
+
+                                                    <div class="form-group col-md-12">
+                                                        <label for="inputdname" class="text-left">Username</label>
+                                                        <input asp-for="UserModel.Username" type="text" class="form-control" id="inputdname" placeholder="Username">
+                                                    </div>
+
+                                                    <div class="form-group col-md-12">
+                                                        <label for="inputEmail4" class="align-content-start">Email</label>
+                                                        <input asp-for="UserModel.Email" type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                                                    </div>
+                                                </div>
+
+                                                <button id="Update" asp-page="Profile" asp-page-handler="update" type="submit" class="btn btn-primary pull-right">Update</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+    <script type="text/javascript">
+        $('#myTab a').on('click', function(e) {
+            e.preventDefault()
+            $(this).tab('show')
+        });
+
+        /**
+         * Datatable call
+         */
+        $(document).ready(function() {
+            $('#my-orders-table').DataTable();
+        });
+
+        /**
+         * My account nav click
+         */
+        $(document).ready(function() {
+            $('.tg-tabs-content-wrapp .my-account-dashboard .card').click(function() {
+
+                var ariaClick = $(this).attr('area-toggle');
+                $('.tg-account .account-banner .nav-area  a#' + ariaClick).click();
+            });
+        });
+
+
+    </script>
+
+</section>

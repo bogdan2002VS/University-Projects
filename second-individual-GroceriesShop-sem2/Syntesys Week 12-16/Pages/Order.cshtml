@@ -1,0 +1,50 @@
+﻿@page
+@using Logic.Order.Model
+@model Syntesys_Week_12_16.Pages.OrderModel
+@{
+
+}
+<div class="container">
+    <form method="post">
+        <h4 class="card-title text-center">@ViewData["Order_Error"]</h4>
+        <h4 class="card-title text-center">Please fill the delivery and the payment information below: </h4>
+        <br />
+        <div class="form-label-group">
+            <label for="StreeName">StreeName</label>
+            <input type="text" id="StreeName" class="form-control" placeholder="StreeName" asp-for="@Model.Order.DeliveryInfo.StreeName" autofocus required>
+            <span  class="text-danger"  asp-validation-for="@Model.Order.DeliveryInfo.StreeName"></span>
+        </div>
+        <br />
+        <div class="form-label-group">
+            <label for="HouseNo">House Number</label>
+            <input type="text" id="HouseNo" class="form-control" placeholder="HouseNo" asp-for="@Model.Order.DeliveryInfo.HouseNo" required>
+            <span  class="text-danger" asp-validation-for="@Model.Order.DeliveryInfo.HouseNo"></span>
+        </div>
+        <br />
+        <div class="form-label-group">
+            <label for="HouseNo">City</label>
+            <input type="text" id="ZipCode" class="form-control" placeholder="City" asp-for="@Model.Order.DeliveryInfo.City" required>
+            <span  class="text-danger" asp-validation-for="@Model.Order.DeliveryInfo.City"></span>
+        </div>
+        <br />
+        <div class="form-label-group">
+            <label for="HouseNo">ZipCode</label>
+            <input type="text" id="ZipCode" class="form-control" placeholder="ZIP Code" asp-for="@Model.Order.DeliveryInfo.ZipCode" required>
+            <span  class="text-danger" asp-validation-for="@Model.Order.DeliveryInfo.ZipCode"></span>
+        </div>
+        <br />
+        <div class="form-label-group">
+            <label for="HouseNo">Payment Option</label>
+
+            <select asp-for="@Model.Order.PaymentOption" class="form-select">
+                <option>Please select one</option>
+                <option>@PaymentOptions.CARD</option>
+                <option>@PaymentOptions.CASH_ON_DELIVERY</option>
+
+            </select>
+        </div>
+        <br />
+
+        <button type="submit" class="btn btn-primary">Order now!</button>
+    </form>
+</div>

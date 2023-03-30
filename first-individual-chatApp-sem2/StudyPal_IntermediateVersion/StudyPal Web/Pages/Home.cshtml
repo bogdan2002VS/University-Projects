@@ -1,0 +1,78 @@
+﻿
+@page
+@using Microsoft.AspNetCore.Http
+@model Proiect_din_ala_tank.Pages.HomeModel
+@{
+    ViewData["Title"] = "Home";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="stylesheet" href="~/css/css_Pt_Main_Page.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/CSS_BUTOANE.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" asp-append-version="true" />
+
+</head>
+
+<header id="navbar">
+
+    <div >
+       <ul class= justify-content-end">
+             <li class = "position-absolute top-0 end-50  ">  
+                <div>
+                <a class="btn btn-outline-light  float-end position-relative vertical-center tada" asp-page="/Update" >Update account</a>
+                </div>
+              </li> 
+                <li class = "position-absolute top-0  ">  
+                <div>
+                <a class="btn btn-outline-light  float-end position-relative vertical-center tada" asp-page="/DeleteAccount" >Delete account</a>
+                </div>
+              </li> 
+          <li class = "position-absolute top-0 end-0">  
+            <div>
+            <a class="btn btn-outline-light  float-end position-relative vertical-center tada" asp-page="/LogOut" >LogOut</a>
+            </div>
+          </li> 
+       </ul> 
+    </div>
+</header>
+
+<main class=" main">
+        <div class="wrapper">
+             <div class="text-center">
+                <h1 class="text-center display-4 welcome">Welcome,  @User.Identity.Name</h1
+            </div>
+            <form method="get">
+                @*<div class='row'>*@
+                    <div class="grid-container">
+                            @foreach (var subject in Model.subjects)
+                            {
+                                <div class=" grid-item">
+                                    <div class='column'>
+                                        <form asp-page="./Subject" asp-route-id=@subject.Id method="post">
+                                       
+                                            <a class="button-wrap" asp-page="./Subject" asp-route-id=@subject.Id button>
+                                                    <span></span>
+                                                    <span></span>
+                                                    <span></span>
+                                                    <span></span>
+                                                    @subject.Name  (@subject.Description)
+                                            </a>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            }
+                 </div>
+
+            </form>
+        </div>
+</main>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+</html>

@@ -1,0 +1,108 @@
+﻿@page
+@model Syntesys_Week_12_16.Pages.ShoppingCartModel
+@{
+
+
+}
+<div class="container">
+    <h1 class="text-left">
+        My Cart
+    </h1>
+    <form method="post">
+        @foreach (var item in @Model.Cart.Items)
+        {
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="/Shop/Product/@item.Product.ID">
+                        <img src="data:image;base64,@System.Convert.ToBase64String(item.Product.Image)" width="250" height="250" />
+                    </a>
+                </div>
+                <div class="col-md-9">
+                    <div class="form-row">
+                        <div class="form-group col-md-8">
+                            <h3>@item.Product.Name</h3>
+                            <label asp-for="@item.Quantity">Quantity</label>
+                            <input asp-for="@item.Quantity" type="number" name="quantities">
+                            <hr />
+                            <label>Price</label>
+                            <p>$@( @Math.Round(item.Product.Price* item.Quantity, 2).ToString().Replace(',', '.'))</p>
+                        </div>
+                        <div class="form-group col-md-4 text-end">
+                            <button type="submit" class="btn btn-outline-primary" asp-page="shoppingCart" asp-page-handler="update">
+                                Update
+                            </button>
+                            <button type="submit" class="btn btn-outline-danger" asp-page="shoppingCart" asp-page-handler="delete" asp-route-id="@item.Product.ID">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div class="text-start">
+             <h5 class="card-title text-center text-danger">@ViewData["Error"]</h5>
+
+            <span>Available bonus points : <strong> @Model.Cart.BonusCard.BonusCardPoints</strong></span>
+            <br />
+            <label>Use bonus: </label>
+            <input name="SelectedBonus" value="0" step="any" id="points" type="number">
+            <br />
+            <span> Discount To Apply (Euro): <strong id="discount">0</strong> </span>
+            <br />
+
+            <span> To Pay: <strong id="total">@Math.Round(Model.Cart.TotalPrice, 2).ToString().Replace(',', '.')</strong> </span>
+
+            <div class="text-end">
+                <a asp-page="/StoreHomePage" class="btn btn-outline-success" button>Go Back to Shopping</a>
+                <button asp-page="/ShoppingCart" asp-page-handler="checkout" class="btn btn-outline-success" type="submit"> Check Out</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+    $("#points").bind('keyup input', function(e) {
+
+        var discount = (parseFloat(this.value) / 100).toFixed(2);
+
+        $("#discount").text(discount);
+
+        var total = parseFloat(@Model.Cart.TotalPrice.ToString().Replace(',', '.')).toFixed(2);
+        var resultTotal = total - discount;
+
+        if (resultTotal > 0) {
+            $("#total").text(resultTotal.toFixed(2));
+        } else {
+            $("#total").text(0);
+        }
+
+        $.ajax({
+            type: "POST",
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader("XSRF-TOKEN",
+                    $('input:hidden[name="__RequestVerificationToken"]').val());
+            },
+            url: "/ShoppingCart?handler=Bonus",
+            data: { selectedBonusPoints: this.value },
+            success: function() {
+                console.log("Am adaugat bonus");
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                if (textStatus == 'Unauthorized') {
+                    alert('custom message. Error: ' + errorThrown);
+                } else {
+                    alert('custom message. Error: ' + errorThrown);
+                }
+            }
+        })
+    });
+
+
+
+
+</script>
+

@@ -1,0 +1,53 @@
+﻿@page
+@model Syntesys_Week_12_16.Pages.StoreHomePageModel
+@{
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/BoostrapHelper.css" />
+
+</head>
+
+<div class="tabs tg-tabs-content-wrapp">
+    <div class="container">
+        <div class="tab-content" id="myTabContent">
+            <div class="my-account-dashboard">
+
+                <div class="row row-cols-3">
+
+                    @foreach (var category in Model.CategoryModelList)
+                    {
+                        <form asp-page="/CatalogueSubcategory" asp-route-id=@category.ID method="post">
+                            <div class="col">
+                                <a style="text-decoration: none; color: black;" asp-page="/CatalogueSubcategory" asp-route-id=@category.ID>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <img src=@category.Image asp-append-version="true" />
+                                            <h2>@category.Name</h2>
+
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </form>
+
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

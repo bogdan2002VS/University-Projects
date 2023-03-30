@@ -1,0 +1,35 @@
+﻿@page
+@model mediabazaarWebsite.Pages.RequestAbsenceModel
+@{
+    Layout = "_LayoutEmployee";
+}
+
+<div class="mContainer">
+    <div class="request-absence-border">
+        <div>
+            <h1>Request absence</h1>
+            <hr />
+        </div>
+        <div class="form-p">
+        <form asp-page-handler="RequestAbsence" method="post">
+            <div class="inp-group">
+                <label>Absence reason:</label><br />
+                <input type="text" asp-for="Reason" />
+            </div>
+            <div class="inp-group">
+                <label>Absence description</label><br />
+                <textarea cols="40" rows="5" asp-for="Description"></textarea>
+            </div>
+            <div class="inp-group">
+                <input type="date" asp-for="absenceDate" value="2023-01-01"/>
+            </div>
+            <div class="inp-group">
+                <button type="submit">Request absence</button>
+            </div>
+        </form>
+        <div>
+            @Model.ErrorMessage
+        </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+﻿@page
+@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Syntesys_Week_12_16.Pages.RegisterModel
+@{
+    ViewData["Title"] = "Register";
+
+}
+<section>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" asp-append-version="true" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/form.css" />
+
+</section>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-xl-9 mx-auto">
+                <div class="card card-signin flex-row my-5">
+                    <div class="card-img-left d-none d-md-flex">
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Register</h5>
+                        <h4 class="card-title text-center">@ViewData["result"]</h4>
+
+                        <hr class="my-4">
+                        <form class="form-signin" method="post">
+                            <div class="form-label-group">
+                                <input  type="text" id="inputName" class="form-control" placeholder="Name" asp-for="User.Name" autofocus>
+                                <label for="inputName">Name</label>
+                                <span class="text-danger" asp-validation-for="User.Name"></span>
+                            </div>
+                            <div class="form-label-group">
+
+                                <input  type="text" id="inputUserame" class="form-control" placeholder="Username" asp-for="User.Username"  autofocus>
+                                <label for="inputUserame">Username</label>
+                                <span class="text-danger" asp-validation-for="User.Username"></span>
+
+                            </div>
+
+                            <div class="form-label-group">
+
+                                <input  type="email" id="inputEmail" class="form-control" placeholder="Email address" asp-for="User.Email" autofocus>
+                                <label for="inputEmail">Email address</label>
+                                <span  class="text-danger" asp-validation-for="User.Email"></span>
+                            </div>
+
+                            <hr>
+
+                            <div class="form-label-group">
+
+                                <input type="password" id="inputPassword" class="form-control" placeholder="Password" asp-for="User.Password"  autofocus>
+                                <label for="inputPassword">Password</label>
+                                <span  class="text-danger" asp-validation-for="User.Password"></span>
+
+                            </div>
+
+                            <hr class="my-4">
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" asp-page-handler="register">Register</button>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

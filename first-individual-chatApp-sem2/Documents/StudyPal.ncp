@@ -1,0 +1,408 @@
+<Project>
+  <Name>StudyPal</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.ClassDiagram" assembly="NClass.DiagramEditor, Version=2.8.0.2, Culture=neutral, PublicKeyToken=null">
+    <Name>Untitled</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Package">
+        <Name>BUSSLOGIC</Name>
+        <Location left="68" top="13" />
+        <Size width="1789" height="1341" />
+      </Entity>
+      <Entity type="Class">
+        <Name>User</Name>
+        <Access>Public</Access>
+        <Location left="669" top="169" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public string Name { get; set; }</Member>
+        <Member type="Property">public string Password { get; set; }</Member>
+        <Member type="Property">public string Username { get; set; }</Member>
+        <Member type="Property">public int ID { get; set; }</Member>
+        <Member type="Constructor">public User(UserDTO User)</Member>
+        <Member type="Constructor">public User(string name, string password)</Member>
+        <Member type="Method">public override bool Equals(object obj)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Admin</Name>
+        <Access>Public</Access>
+        <Location left="804" top="505" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public Admin(UserDTO User)</Member>
+        <Member type="Method">public override bool Equals(object obj)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>BasicUser</Name>
+        <Access>Public</Access>
+        <Location left="548" top="505" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public BasicUser(UserDTO User)</Member>
+        <Member type="Method">public override bool Equals(object obj)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>UserManager</Name>
+        <Access>Public</Access>
+        <Location left="144" top="132" />
+        <Size width="414" height="264" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private QueryExecutor&lt;object&gt; queryExecutorMediator</Member>
+        <Member type="Constructor">public UserManager(QueryExecutor&lt;object&gt; queryExecutorMediator)</Member>
+        <Member type="Method">public User LogIn(string username, string password)</Member>
+        <Member type="Method">public List&lt;UserDTO&gt; ProcessResultForUser(SqlDataReader reader)</Member>
+        <Member type="Method">private object ProcessInsert(SqlDataReader reader)</Member>
+        <Member type="Method">public void AddUser(string name, string username, string password)</Member>
+        <Member type="Method">public void UpdateUser(string name, string username, string password, string id)</Member>
+        <Member type="Method">private List&lt;UserDTO&gt; GetAllUsersForUsername(string username)</Member>
+        <Member type="Method">private bool CheckPassword(string salt, string passToCheck, string passFromDB)</Member>
+        <Member type="Method">public Boolean DeleteUser(string username, string password)</Member>
+        <Member type="Method">public object DeleteUserProcessResult(SqlDataReader reader)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IUserManager</Name>
+        <Access>Public</Access>
+        <Location left="251" top="531" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">void UpdateUser(string name, string username, string password, string id)</Member>
+        <Member type="Method">User LogIn(string username, string password)</Member>
+      </Entity>
+      <Entity type="Class">
+        <Name>ChatRoom</Name>
+        <Access>Public</Access>
+        <Location left="1598" top="255" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public int ID { get; set; }</Member>
+        <Member type="Property">public string Name { get; set; }</Member>
+        <Member type="Property">public long Subject { get; set; }</Member>
+        <Member type="Property">public long AdminID { get; set; }</Member>
+        <Member type="Constructor">public ChatRoom(ChatRoomDTO chatRoomDTO)</Member>
+        <Member type="Method">public override bool Equals(object obj)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ChatRoomManager</Name>
+        <Access>Public</Access>
+        <Location left="1025" top="188" />
+        <Size width="406" height="366" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private QueryExecutor&lt;object&gt; queryExecutorMediator</Member>
+        <Member type="Constructor">public ChatRoomManager(QueryExecutor&lt;object&gt; queryExecutorMediator)</Member>
+        <Member type="Method">public List&lt;ChatRoom&gt; GetChatRooms(long subjectId)</Member>
+        <Member type="Method">public ChatRoom GetChatRoomByName(string name)</Member>
+        <Member type="Method">public ChatRoomDTO ProcessResultForSingleChatRoom(SqlDataReader reader)</Member>
+        <Member type="Method">public List&lt;ChatRoomDTO&gt; ProcessResult(SqlDataReader reader)</Member>
+        <Member type="Method">public long CreateChatRoom(long subjectID, string name, long AdminID)</Member>
+        <Member type="Method">public object CreateRoomProcessResult(SqlDataReader reader)</Member>
+        <Member type="Method">public object SentMessageProcessResult(SqlDataReader reader)</Member>
+        <Member type="Method">public long SendMessage(long ChatRoomID, string Message, string From)</Member>
+        <Member type="Method">public List&lt;Message&gt; GetMessages(long chatRoomId)</Member>
+        <Member type="Method">public List&lt;MessageDTO&gt; GetMessagesProcessResult(SqlDataReader reader)</Member>
+        <Member type="Method">public long DeleteChatRoom(long chatRoomId)</Member>
+        <Member type="Method">public object DeleteChatRoomProcessResult(SqlDataReader reader)</Member>
+        <Member type="Method">public object DeleteMessage(long chatRoomId)</Member>
+        <Member type="Method">public object DeleteMessagesProcessResult(SqlDataReader reader)</Member>
+        <Member type="Method">public void NewMethod()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Message</Name>
+        <Access>Public</Access>
+        <Location left="1211" top="664" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">long ID { get; set; }</Member>
+        <Member type="Property">public string Text { get; set; }</Member>
+        <Member type="Property">public string From { get; set; }</Member>
+        <Member type="Property">public long ChatRoomID { get; set; }</Member>
+        <Member type="Constructor">public Message(MessageDTO messageDTO)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Subject</Name>
+        <Access>Public</Access>
+        <Location left="804" top="952" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private long id</Member>
+        <Member type="Field">private string name</Member>
+        <Member type="Field">private string description</Member>
+        <Member type="Constructor">public Subject(SubjectDTO subjectDTO)</Member>
+        <Member type="Property">public string Name { get; set; }</Member>
+        <Member type="Property">public string Description { get; set; }</Member>
+        <Member type="Property">public long Id { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>SubjectManager</Name>
+        <Access>Public</Access>
+        <Location left="1040" top="938" />
+        <Size width="162" height="230" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private QueryExecutor&lt;object&gt; queryExecutorMediator</Member>
+        <Member type="Constructor">public SubjectManager(QueryExecutor&lt;object&gt; queryExecutorMediator)</Member>
+        <Member type="Method">public List&lt;Subject&gt; GetSubjects()</Member>
+        <Member type="Method">public Subject GetSubjectsByName(string name)</Member>
+        <Member type="Method">public List&lt;SubjectDTO&gt; ProcessResult(SqlDataReader reader)</Member>
+        <Member type="Method">private SubjectDTO ProcessResultByName(SqlDataReader reader)</Member>
+        <Member type="Method">public long CreateSubject(string name, string description)</Member>
+        <Member type="Method">private object CreateSubjectProcessResult(SqlDataReader reader)</Member>
+        <Member type="Method">public void NewMethod()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Package">
+        <Name>DAL</Name>
+        <Location left="2016" top="60" />
+        <Size width="948" height="1294" />
+      </Entity>
+      <Entity type="Class">
+        <Name>ChatRoomDTO</Name>
+        <Access>Public</Access>
+        <Location left="2167" top="324" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public int ID { get; set; }</Member>
+        <Member type="Property">public string Name { get; set; }</Member>
+        <Member type="Property">public long Subject { get; set; }</Member>
+        <Member type="Property">public long AdminID { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>HasingSalting</Name>
+        <Access>Public</Access>
+        <Location left="2452" top="324" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public static string CreateSalt(int size)</Member>
+        <Member type="Method">public static string GenerateSHA256Hash(string password, string salt)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>MessageDTO</Name>
+        <Access>Public</Access>
+        <Location left="2226" top="655" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public long ID</Member>
+        <Member type="Field">public long ChatRoomID</Member>
+        <Member type="Field">public string Message</Member>
+        <Member type="Field">public string From</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>SubjectDTO</Name>
+        <Access>Public</Access>
+        <Location left="2574" top="655" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public string Name</Member>
+        <Member type="Field">public long ID</Member>
+        <Member type="Field">public string Description</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>UserDTO</Name>
+        <Access>Public</Access>
+        <Location left="2692" top="256" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public string Name</Member>
+        <Member type="Field">public int ID</Member>
+        <Member type="Field">public string Username</Member>
+        <Member type="Field">public string Password</Member>
+        <Member type="Field">public string Salt</Member>
+        <Member type="Field">public bool IsAdmin</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>QueryExecutor</Name>
+        <Access>Public</Access>
+        <Location left="2551" top="960" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private readonly string connectionstring</Member>
+        <Member type="Constructor">public QueryExecutor(string connectionstring)</Member>
+        <Member type="Method">public virtual T Execute(string query, Func&lt;SqlDataReader, T&gt; func)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>SQLConnect</Name>
+        <Access>Public</Access>
+        <Location left="2293" top="960" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public static string _connectionstring = "Server=mssqlstud.fhict.local;Database=dbi489732_chatdata;User Id=dbi489732_chatdata;Password=1234"</Member>
+        <Member type="Field">public static SqlConnection connection = new SqlConnection(_connectionstring)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Containers>
+      <Container entityIndex="0">
+        <ChildEntity>1</ChildEntity>
+        <ChildEntity>2</ChildEntity>
+        <ChildEntity>3</ChildEntity>
+        <ChildEntity>4</ChildEntity>
+        <ChildEntity>5</ChildEntity>
+        <ChildEntity>6</ChildEntity>
+        <ChildEntity>7</ChildEntity>
+        <ChildEntity>8</ChildEntity>
+        <ChildEntity>9</ChildEntity>
+        <ChildEntity>10</ChildEntity>
+        <ChildEntity>-1</ChildEntity>
+      </Container>
+      <Container entityIndex="11">
+        <ChildEntity>12</ChildEntity>
+        <ChildEntity>13</ChildEntity>
+        <ChildEntity>14</ChildEntity>
+        <ChildEntity>15</ChildEntity>
+        <ChildEntity>16</ChildEntity>
+        <ChildEntity>17</ChildEntity>
+        <ChildEntity>18</ChildEntity>
+      </Container>
+    </Containers>
+    <Relationships>
+      <Relationship type="Generalization" first="3" second="1">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="2" second="1">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="5" second="4">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="4" second="1">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="7" second="6">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="7" second="8">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="10" second="9">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Dependency" first="5" second="4">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="12" second="7">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="13" second="4">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2558</X>
+          <Y>293</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1027</X>
+          <Y>140</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="16" second="4">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2786</X>
+          <Y>216</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>596</X>
+          <Y>136</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="14" second="7">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="15" second="7">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="18" second="7">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2093</X>
+          <Y>963</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1159</X>
+          <Y>580</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="18" second="10">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="18" second="4">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2238</X>
+          <Y>1258</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>459</X>
+          <Y>434</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="18" second="17">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>

@@ -1,0 +1,118 @@
+﻿@page "{id:int}"
+@model Syntesys_Week_12_16.Pages.CatalogModel
+@{
+}
+@Html.AntiForgeryToken()
+
+<head>
+    @* <link rel="stylesheet/less" type="text/css" href="~/css/styles.less" />*@
+    <link rel="stylesheet" href="~/css/StyleSheet.css" />
+
+
+</head>
+<div class="container">
+    <main role="main" class="pb-3" id="catalogueMain">
+        <br />
+        <h3>Catalogue</h3>
+        <br />
+        <form method="get">
+            <div class="row">
+                @if (Model.ProductList.Count == 0)
+                {
+
+                    <section class="animated section-notif section-notif-warning">
+                        <span class="notif-exit">x</span>
+                        <div class="notif-icon">
+                            <i class="fa fa-times-circle"></i>
+                        </div>
+                        <div class="notif-content">
+                            <span class="notif-title">Warning</span><br>
+                            <span class="notif-msg"> No products could be found !</span>
+                        </div>
+                    </section>
+                }
+                else
+                {
+                    @foreach (var product in @Model.ProductList)
+                    {
+
+                        <div class="col-4">
+                            <div class="card mb-4" id="@product.ID">
+                                <div class="card-header">
+                                    <h5 class="my-0 font-weight-normal">
+                                        @product.Name
+                                    </h5>
+                                </div>
+                                <img src="data:image;base64,@System.Convert.ToBase64String(product.Image)" alt="Card Image" class="card-img-top" style="height: 300px;" />
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <label style="font-size: 20px;"><b>Price : @product.Price  </b></label> 
+                                            
+                                        </div>
+                                        <div class="btn-group">
+                                             <label style="font-size: 20px;"><b>Unit : @product.Unit  </b></label> 
+                                        </div>
+                                        
+                                        <a id="@product.ID" class="addBtn btn pull-right btn-outline-info " button>Add To Cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+
+            </div>
+        </form>
+    </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/less" asp-append-version="true"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript">
+
+    $(document).on('click', '#remove-notif', function () {
+        $('#success-notif').remove();
+    }
+    );
+    $('.addBtn').on('click', function () {
+        const productId = $(this).attr("id");
+
+        $.ajax({
+            type: "GET",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("XSRF-TOKEN",
+                    $('input:hidden[name="__RequestVerificationToken"]').val());
+            },
+            url: "/catalog/" + @Model.ID+"?handler=AddToCart",
+            data: { productId: productId },
+            success: function () {
+                console.log("Am adaugat!");
+
+                var notification = "<section id='success-notif' class='card-header animated section-notif section-notif-success'>" +
+                    " <span class='notif-exit' id ='remove-notif'>x</span>" +
+                    " <div class='notif-icon''> " +
+                    "     <i class='fa fa-check-circle' aria-hidden='true'></i> " +
+                    " </div> " +
+                    " <div class='notif-content'> " +
+                    "     <span class='notif-title'>Your item was added to the cart</span><br> "
+                "     <span class='notif-msg'>You can check it by clicking on the cart icon</span> "
+                " </div> " +
+                    "</section>";
+                $(".card#" + productId).prepend(notification);
+            },
+            cache: false,
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                if (textStatus == 'Unauthorized') {
+                    alert('custom message. Error: ' + errorThrown);
+                } else {
+                    alert('custom message. Error: ' + errorThrown);
+                }
+            }
+        })
+    });
+
+
+
+</script>

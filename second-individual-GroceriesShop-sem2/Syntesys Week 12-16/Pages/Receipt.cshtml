@@ -1,0 +1,114 @@
+﻿@page "orderid:int"
+@model Syntesys_Week_12_16.Pages.ReceiptModel
+@{
+
+}
+
+<div class="container">
+    <h1>Receipt</h1>
+    <div class="form-group row">
+        <div class="container">
+            <div class="card">
+                <div class="card-header">
+                    <p> Invoice </p>
+                    <strong>@Model.OrderModel.ID</strong>
+                    <span class="float-right"> <strong>Status:</strong> @Model.OrderModel.OrderStatus</span>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-sm-6">
+
+                            <div class="col-sm-6">
+                                <span>Bonus Card Id: @Model.BonusCard.BonusCardId</span>
+                                <div>
+                                    <h6 class="mb-3">Ship To:</h6>
+                                    <strong>@Model.OrderModel.UserModel.Name</strong>
+                                </div>
+                                <div>@Model.OrderModel.DeliveryInfo.City </div>
+                                <div>@Model.OrderModel.DeliveryInfo.StreeName @Model.OrderModel.DeliveryInfo.HouseNo, @Model.OrderModel.DeliveryInfo.ZipCode</div>
+                                <div>Order Date: @Model.OrderModel.OrderDate.Value.ToShortDateString()</div>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive-sm">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th class="right">Unit Cost</th>
+                                        <th class="center">Quantity</th>
+                                        <th class="right">Sub Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var orderItem in Model.OrderModel.ShoppingCart.Items)
+                                    {
+                                        <tr>
+                                            <td class="left strong">@orderItem.Product.Name</td>
+                                            <td class="right">@orderItem.Product.Price</td>
+                                            <td class="center">@orderItem.Quantity</td>
+                                            <td class="right">@Math.Round(@orderItem.Quantity * @orderItem.Product.Price, 2) Euro</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-5">
+                            </div>
+                            <div class="col-lg-4 col-sm-5 ml-auto">
+                                <table class="table table-clear">
+                                    <tbody>
+                                        <tr>
+                                            <td class="left">
+                                                <strong>Payment Method</strong>
+                                            </td>
+
+                                            <td class="right">@Model.OrderModel.PaymentOption</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="left">
+                                                <strong>Total</strong>
+                                            </td>
+
+                                            <td class="right">@Model.OrderModel.Total Euro</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="left">
+                                                <strong>Discount Applied</strong>
+                                            </td>
+
+                                            <td class="right">@Math.Round(Model.OrderModel.BonusPointsUsed / 100.0, 2) Euro</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="left">
+                                                <strong>Order Bonus Points Used </strong>
+                                            </td>
+
+                                            <td class="right">@Model.OrderModel.BonusPointsUsed</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="left">
+                                                <strong>Order Bonus Points Earned</strong>
+                                            </td>
+
+                                            <td class="right">@Model.OrderModel.BonusPointsEarned</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="left">
+                                                <strong>Total Bonus Points</strong>
+                                            </td>
+                                            <td class="right">
+                                                <strong>@Model.BonusCard.BonusCardPoints</strong>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

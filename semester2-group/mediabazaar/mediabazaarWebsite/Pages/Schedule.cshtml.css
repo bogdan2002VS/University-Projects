@@ -1,0 +1,54 @@
+﻿body {
+}
+
+.colHours {
+    margin-top: 30px;
+    font-weight: bold;
+}
+
+.hours {
+    height: 5rem;
+    margin-bottom: 0px;
+}
+
+.scheduleBackground {
+    background: rgba( 255, 255, 255, 0.55 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 6.5px );
+    -webkit-backdrop-filter: blur( 6.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.shift {
+    background: rgba( 255, 255, 255, 0.55 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 6.5px );
+    -webkit-backdrop-filter: blur( 6.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    background-color: #9e0059;
+    margin-bottom: 0px;
+    padding: 5px;
+    color: white;
+    font-weight: bold;
+    width: 11.6rem;
+    text-align: center;
+}
+
+.weekDays {
+    text-align: center;
+    font-weight: bold;
+}
+
+@media (max-width: 1200px) {
+    .shift {
+        width: 9rem;
+    }
+}
+
+@media (max-width: 1000px) {
+    .shift {
+        width: 6rem;
+    }
+}

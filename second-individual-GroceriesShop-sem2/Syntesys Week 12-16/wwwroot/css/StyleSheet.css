@@ -1,0 +1,182 @@
+﻿body {
+    background: #FFF;
+}
+/*@error-bg: #e74c3c;
+@error-br: #c0392b;
+@success-bg: #dff0d8;
+@success-br: #d6e9c6;
+@info-bg: #3498db;
+@info-br: #2980b9;
+@text-color:#3c763d;*/
+.section-notifs {
+    position: absolute;
+    font-family: sans-serif;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+    .section-notifs.section-notifs--top-right {
+        right: 0px;
+        top: 0px;
+        margin-top: 100px;
+        padding-top: 10px;
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .section-notifs.section-notifs--top-left {
+        left: 0px;
+        top: 0px;
+        margin-top: 100px;
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .section-notifs.section-notifs--bottom-right {
+        right: 0px;
+        bottom: 0px;
+        margin-bottom: 10px;
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .section-notifs.section-notifs--bottom-left {
+        left: 0px;
+        bottom: 0px;
+        margin-bottom: 10px;
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+.section-notif-error {
+    border: 1px solid #c0392b;
+    background-color: #e74c3c;
+    color: #ecf0f1;
+    -moz-box-shadow: -1px 1px 5px 0px #c0392b;
+    -webkit-box-shadow: -1px 1px 5px 0px #c0392b;
+    -o-box-shadow: -1px 1px 5px 0px #c0392b;
+    box-shadow: -1px 1px 5px 0px #c0392b;
+}
+
+    .section-notif-error .notif-exit {
+        color: #ecf0f1;
+    }
+
+        .section-notif-error .notif-exit:hover {
+            background-color: #c0392b;
+            color: #e74c3c;
+        }
+
+.section-notif-warning {
+    border: 1px solid #d35400;
+    background-color: #e67e22;
+    color: #ecf0f1;
+    -moz-box-shadow: -1px 1px 5px 0px #d35400;
+    -webkit-box-shadow: -1px 1px 5px 0px #d35400;
+    -o-box-shadow: -1px 1px 5px 0px #d35400;
+    box-shadow: -1px 1px 5px 0px #d35400;
+}
+
+    .section-notif-warning .notif-exit {
+        color: #ecf0f1;
+    }
+
+        .section-notif-warning .notif-exit:hover {
+            background-color: #d35400;
+            color: #e67e22;
+        }
+
+.section-notif-success {
+    border: 1px solid #16a085;
+    background-color: #1abc9c;
+    color: #ecf0f1;
+    -moz-box-shadow: -1px 1px 5px 0px #16a085;
+    -webkit-box-shadow: -1px 1px 5px 0px #16a085;
+    -o-box-shadow: -1px 1px 5px 0px #16a085;
+    box-shadow: -1px 1px 5px 0px #16a085;
+}
+
+    .section-notif-success .notif-exit {
+        color: #ecf0f1;
+    }
+
+        .section-notif-success .notif-exit:hover {
+            background-color: #16a085;
+            color: #1abc9c;
+        }
+
+.section-notif-info {
+    border: 1px solid #2980b9;
+    background-color: #3498db;
+    color: #ecf0f1;
+    -moz-box-shadow: -1px 1px 5px 0px #2980b9;
+    -webkit-box-shadow: -1px 1px 5px 0px #2980b9;
+    -o-box-shadow: -1px 1px 5px 0px #2980b9;
+    box-shadow: -1px 1px 5px 0px #2980b9;
+}
+
+    .section-notif-info .notif-exit {
+        color: #ecf0f1;
+    }
+
+        .section-notif-info .notif-exit:hover {
+            background-color: #2980b9;
+            color: #3498db;
+        }
+
+.section-notif {
+    pointer-events: auto;
+    position: relative;
+    margin-bottom: 7px;
+    padding-bottom: 5px;
+    width: 300px;
+}
+
+    .section-notif .notif-exit {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 30px;
+        width: 30px;
+        font-size: 20px;
+        text-align: center;
+        line-height: 30px;
+    }
+
+        .section-notif .notif-exit:hover {
+            cursor: pointer;
+        }
+
+    .section-notif .notif-icon {
+        display: inline-block;
+        position: absolute;
+        width: 20%;
+        text-align: center;
+        font-size: 40px;
+        padding-top: 10px;
+    }
+
+    .section-notif .notif-content {
+        display: inline-block;
+        height: 60px;
+        width: 80%;
+        margin-left: 20%;
+        margin-top: 10px;
+    }
+
+    .section-notif .notif-title {
+        font-weight: bold;
+        display: inline-block;
+        margin-bottom: 5px;
+        font-size: 16px;
+    }
+
+    .section-notif .notif-msg {
+        display: inline-block;
+        margin-right: 5px;
+        margin-left: 7px;
+        font-size: 14px;
+    }

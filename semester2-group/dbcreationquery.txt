@@ -1,0 +1,99 @@
+CREATE TABLE Person(
+id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+firstName NVARCHAR(60) NOT NULL,
+lastName NVARCHAR(60) NOT NULL,
+email NVARCHAR(50) NOT NULL,
+dateOfBirth DATE NOT NULL,
+phoneNumber NVARCHAR(50) NOT NULL,
+bsn NVARCHAR(15) NOT NULL,
+isActive BIT NOT NULL,
+
+)
+
+CREATE TABLE [Address](
+personId int NOT NULL PRIMARY KEY,
+streetName NVARCHAR(50) NULL,
+streetNumber NVARCHAR(50) NULL,
+zip NVARCHAR(15) NULL,
+city NVARCHAR(30) NULL,
+country NVARCHAR(30) NULL
+
+CONSTRAINT FK1_PersonAddress FOREIGN KEY(personId) REFERENCES Person(id)
+)
+
+CREATE TABLE Employees(
+id int NOT NULL PRIMARY KEY,
+username NVARCHAR(50) NOT NULL,
+[password] NVARCHAR(100) NOT NULL,
+RFIDSerialNumber NVARCHAR(40) NOT NULL,
+Type nvarchar(20) NOT NULL,
+
+CONSTRAINT FK2_EmployeePerson FOREIGN KEY(id) REFERENCES Person(id)
+)
+
+CREATE TABLE Manager(
+id int NOT NULL PRIMARY KEY,
+
+CONSTRAINT FK6_EmployeeManager FOREIGN KEY(id) REFERENCES Person(id)
+)
+
+CREATE TABLE DepoManager(
+id int NOT NULL PRIMARY KEY,
+
+CONSTRAINT FK7_DepoManager FOREIGN KEY(id) REFERENCES Person(id)
+)
+
+CREATE TABLE StockManager(
+id int NOT NULL PRIMARY KEY,
+
+CONSTRAINT FK8_StockManager FOREIGN KEY(id) REFERENCES Person(id)
+)
+
+CREATE TABLE Shifts(
+employeeId int NOT NULL,
+[start] DATETIME NOT NULL,
+[end] DATETIME NOT NULL
+
+CONSTRAINT FK3_ShiftEmployee FOREIGN KEY (employeeId) REFERENCES Employees(id)
+)
+
+CREATE TABLE Absences(
+employeeId int NOT NULL,
+id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+[date] DATETIME NOT NULL,
+absenceReason NVARCHAR(200),
+absenceDescription NVARCHAR(300),
+ticketStatus NVARCHAR(20),
+
+CONSTRAINT FK4_AbsenecesEmployee FOREIGN KEY (employeeId) REFERENCES Employees(id)
+)
+
+CREATE TABLE Warnings(
+employeeId int NOT NULL,
+reason NVARCHAR(200),
+
+CONSTRAINT FK5_WarningsEmployee FOREIGN KEY (employeeId) REFERENCES Employees(id)
+)
+
+CREATE TABLE Department(
+id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
+[name] NVARCHAR(20) NOT NULL,
+)
+
+CREATE TABLE Products(
+id int not null identity(1,1) primary key,
+boughtFor float not null,
+soldFor float not null,
+model nvarchar(40) not null,
+brandName nvarchar(40) not null,
+[description] nvarchar(200) not null,
+[weight] float not null,
+height float not null,
+width float not null,
+category NVARCHAR(20) NOT NULL,
+quantityWH int NOT NULL,
+quantitySH int NOT NULL,
+productState TINYINT NOT NULL,
+barcode NVARCHAR(40) NOT NULL,
+minStock int not null,
+)

@@ -1,0 +1,91 @@
+﻿@page "{id:int}"
+@model Proiect_din_ala_tank.Pages.SubjectModel
+@{
+    ViewData["Title"] = "Subject";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="stylesheet" href="~/css/css_Pt_Main_Page.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/CSS_BUTOANE.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" asp-append-version="true" />
+</head>
+
+<header id="navbar">
+    <div>
+        <ul>
+            <li class="position-absolute top-0 end-0">
+                <div>
+                    @*  <button type="submit" class="btn btn-outline-light btn-lg float-end position-relative" asp-page="/LogOut">
+                    LogOut
+                    </button>*@
+                    <a class="btn btn-outline-light  float-end position-relative vertical-center tada" asp-page="/LogOut">LogOut</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</header>
+
+<main class=" main">
+
+
+    <div class="wrapper">
+
+        <div>
+            <form method="post" asp-page-handler="createRoom">
+                <p class=" textFont">Room name:</p>
+                <div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-light" type="submit">Create</button>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Type the name of the room" aria-label="roomName" aria-describedby="basic-addon1" name="newChatRoomName">
+                    </div>
+            </form>
+        </div>
+        <form method="get">
+
+            <div class="grid-container">
+
+                @if (ModelState.IsValid == false)
+                {
+                    <p> @ModelState.ToArray()</p>
+
+                }
+                @if (Model.ChatRooms == null || Model.ChatRooms.Count() == 0)
+                {
+                    <span class="alert-warning">There are no chatrooms here </span>
+                }
+                else
+                {
+                    @foreach (var ChatRoom in Model.ChatRooms)
+                    {
+                        <div class="grid-item">
+                            <div class="column">
+                                <form asp-page="/Room" asp-route-id=@ChatRoom.ID method="post">
+
+                                    <a asp-page="/Room" asp-route-id=@ChatRoom.ID button>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        @ChatRoom.Name
+                                    </a>
+
+                                </form>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </form>
+
+
+    </div>
+
+</main>
+
+</html>

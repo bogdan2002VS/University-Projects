@@ -1,0 +1,23 @@
+﻿@page
+@model Syntesys_Week_12_16.Pages.loadingModel
+@{
+    ViewData["Title"] = "loading";
+}    
+ <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Static Template</title>
+    <link rel="stylesheet" href="~/css/loading.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <section>
+    <div class="circle"></div>
+  </section>
+</html>
+
+
+<script language="javascript" type="text/javascript">
+    window.setTimeout('window.location="/StoreHomePage";',1000);
+</script>

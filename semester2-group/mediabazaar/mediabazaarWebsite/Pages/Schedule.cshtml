@@ -1,0 +1,83 @@
+﻿@page
+@using Logic
+@model mediabazaarWebsite.Pages.ScheduleModel
+@{
+    Layout = "_LayoutEmployee";
+}
+
+<div class="row scheduleBackground">
+    <div class="col-1">
+        <div class="colHours">
+            <p class="hours">8</p>
+            <p class="hours">9</p>
+            <p class="hours">10</p>
+            <p class="hours">11</p>
+            <p class="hours">12</p>
+            <p class="hours">13</p>
+            <p class="hours">14</p>
+            <p class="hours">15</p>
+            <p class="hours">16</p>
+            <p class="hours">17</p>
+        </div>
+    </div>
+    <div class="col">
+        <div class="weekDays">Monday</div>
+        <div>
+            @foreach (Shift a in Model.Shifts)
+            {
+                if (a.Start.DayOfWeek == DayOfWeek.Monday)
+                {
+                    <p class="shift" style="position: absolute; top: @Model.CalculateTop(a); height: @Model.CalculateHeight(a); background-color: @Model.GetBackground()">@a.ToString()</p>
+                }
+            }
+        </div>
+    </div>
+    <div class="col">
+        <div class="weekDays">Tuesday</div>
+        <div>
+            @foreach (Shift a in Model.Shifts)
+            {
+                if (a.Start.DayOfWeek == DayOfWeek.Tuesday)
+                {
+                    <p class="shift" style="position: absolute; top: @Model.CalculateTop(a); height: @Model.CalculateHeight(a); background-color: @Model.GetBackground()">@a.ToString()</p>
+                }
+            }
+        </div>
+    </div>
+    <div class="col">
+        <div class="weekDays">Wednesday</div>
+        <div>
+            @foreach (Shift a in Model.Shifts)
+            {
+                if (a.Start.DayOfWeek == DayOfWeek.Wednesday)
+                {
+                    <p class="shift" style="position: absolute; top: @Model.CalculateTop(a); height: @Model.CalculateHeight(a); background-color: @Model.GetBackground()">@a.ToString()</p>
+                }
+            }
+        </div>
+    </div>
+    <div class="col">
+        <div class="weekDays">Thursday</div>
+        <div>
+            @foreach (Shift a in Model.Shifts)
+            {
+                if (a.Start.DayOfWeek == DayOfWeek.Thursday)
+                {
+                    <p class="shift" style="position: absolute; top: @Model.CalculateTop(a); height: @Model.CalculateHeight(a); background-color: @Model.GetBackground()">@a.ToString()</p>
+                }
+            }
+        </div>
+    </div>
+    <div class="col">
+        <div class="weekDays">Friday</div>
+        <div>
+            @foreach (Shift a in Model.Shifts)
+            {
+                if (a.Start.DayOfWeek == DayOfWeek.Friday)
+                {
+                    <p class="shift" style="position: absolute; top: @Model.CalculateTop(a); height: @Model.CalculateHeight(a); background-color: @Model.GetBackground()">@a.ToString()</p>
+                }
+            }
+        </div>
+    </div>
+</div>
